@@ -4,10 +4,23 @@
             'services': 'Services | Empower Ability Labs',
             'schedule': 'Schedule a Call | Empower Ability Labs'
         };
+        
+        // Screen reader announcements configuration
+        const srAnnouncements = {
+            'home': 'Welcome to Empower Ability Labs!',
+            'services': 'Our Services',
+            'schedule': 'Schedule a Call'
+        };
 
         // Function to update page title
         function updatePageTitle(pageId) {
             document.title = pageTitles[pageId] || 'Empower Ability Labs';
+        }
+
+        // Function to announce to screen readers
+        function announceToScreenReader(message) {
+            const announcementEl = document.getElementById('sr-announcement');
+            announcementEl.textContent = message;
         }
 
         // Toggle community content on button click
@@ -54,7 +67,8 @@
                     });
                     
                     // Show the target view
-                    document.getElementById(`${targetId}-view`).classList.add('active');
+                    const targetView = document.getElementById(`${targetId}-view`);
+                    targetView.classList.add('active');
                     
                     // Update active navigation link
                     navLinks.forEach(link => link.classList.remove('active'));
@@ -62,14 +76,25 @@
                     
                     // Update page title
                     updatePageTitle(targetId);
+
+                    // Announce to screen reader
+                    announceToScreenReader(srAnnouncements[targetId]);
                     
                     // Update URL hash without triggering page reload
                     window.history.pushState(null, null, `#${targetId}`);
+
+                    const targetHeading = targetView.querySelector('h1');
+                    if (targetHeading) {
+                        targetHeading.setAttribute('tabindex', '-1');
+                        targetHeading.focus();
+                    }
                     
                     // Focus on main content for screen readers
-                    document.getElementById('main-content').focus();
+                    // document.getElementById('main-content').focus();
                 });
             });
+
+            
             
             // Handle browser back/forward buttons
             window.addEventListener('popstate', function() {

@@ -30,17 +30,14 @@
             padding: 0 20px;
         }
         
-        /* Skip link for accessibility */
-        .skip-link {
+        
+        /* Screen reader announcement area */
+        .sr-announcement {
             position: absolute;
-            top: -40px;
-            left: 0;
-            background: var(--primary);
-            color: white;
-            padding: 8px;
-            z-index: 100;
-            text-decoration: none;
-            border-radius: 0 0 4px 0;
+            left: -10000px;
+            width: 1px;
+            height: 1px;
+            overflow: hidden;
         }
         
         .skip-link:focus {
@@ -140,6 +137,12 @@
             min-height: calc(100vh - 140px);
             padding: 2rem 0;
         }
+
+        /* Add focus styles for headings when they receive focus programmatically */
+h1:focus, h3:focus {
+    outline: 2px solid var(--accent);
+    outline-offset: 4px;
+}
         
         .view {
             display: none;
