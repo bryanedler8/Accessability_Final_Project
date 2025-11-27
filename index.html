@@ -172,18 +172,25 @@
                     <div class="error" id="topic-error">Please select at least one topic</div>
                 </div>
 
-                <!-- Conditional form group that appears only when UX/UI Design is selected -->
+                
                 <div class="form-group conditional-group" id="event-details-group">
                     <label for="event">Tell us about your event</label>
                     <textarea id="event" name="event"></textarea>
                 </div>
                                         
-                <div class="switch-container" tabindex="0">
+                <!-- <div class="switch-container" tabindex="0">
                     <label class="switch">
                         <input type="checkbox" id="newsletter" name="newsletter">
                         <span class="slider"></span>
                     </label>
                     <label for="newsletter">Receive emails about updates and services</label>
+                </div> -->
+
+                <div class="switch-container">
+                    <label class="switch-label">
+                    <input type="checkbox" id="newsletter" name="newsletter"
+                    role="switch">Receive emails about updates and services
+                    </label>
                 </div>
                 
                 <button type="submit" class="btn">Submit</button>
