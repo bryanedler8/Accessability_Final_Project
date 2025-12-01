@@ -1,5 +1,5 @@
 
-# *README –  Final Project: Empower Ability Labs (SPA)
+# README –  Final Project: Empower Ability Labs (SPA)
 
 ## **Overview**
 
