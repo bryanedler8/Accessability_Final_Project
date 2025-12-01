@@ -139,3 +139,39 @@
 .has-dialog {
   overflow: hidden;
 }
+
+/* Mobile-friendly tweaks for the dialog */
+@media screen and (max-width: 639px) {
+
+  /* Make the backdrop dim on mobile too */
+  .dialog-backdrop {
+    background: rgb(0 0 0 / 40%);
+  }
+
+  /* Full-screen style dialog, easier on small screens */
+  [role="dialog"] {
+    position: fixed;
+    top: 0;
+    left: 0;
+    transform: none;              /* no horizontal centering */
+    width: 100%;
+    min-height: 100vh;
+    padding: 1.5rem 1rem;
+    border-radius: 0;
+    box-shadow: none;             /* flat on mobile */
+  }
+
+  /* Make close button bigger and easier to tap */
+  .dialog_close_button {
+    top: 12px;
+    right: 12px;
+    left: auto;
+    height: 32px;
+    width: 32px;
+    font-size: 1.5rem;
+  }
+
+  .dialog_desc {
+    padding: 1rem 0.5rem;
+  }
+}
