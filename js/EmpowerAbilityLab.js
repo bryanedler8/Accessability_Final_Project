@@ -24,7 +24,7 @@
         }
 
         // Toggle community content on button click
-            const communityBtn = document.getElementById('community-btn');
+            /* const communityBtn = document.getElementById('community-btn');
             const communityContent = document.getElementById('community-content');
             
             communityBtn.addEventListener('click', function() {
@@ -33,7 +33,7 @@
                 } else {
                     communityContent.style.display = 'block';
                 }
-            });
+            }); */
             
             // Toggle event details form group based on checkbox selection
             const designCheckbox = document.getElementById('topic-invite');
@@ -122,7 +122,7 @@
             
             
             
-            modalClose.addEventListener('click', function() {
+            /* modalClose.addEventListener('click', function() {
                 modal.style.display = 'none';
                 document.body.style.overflow = 'auto';
                 modal.setAttribute('aria-hidden', 'true');
@@ -147,7 +147,7 @@
                     modal.setAttribute('aria-hidden', 'true');
                     communityBtn.focus();
                 }
-            });
+            }); */
             
             // Form validation and submission
             const scheduleForm = document.getElementById('schedule-form');

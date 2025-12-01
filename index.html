@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home | Empower Ability Labs</title>
-    <link rel="stylesheet" type="text/css" href="EmpowerAbilityLab.css">
+    <link rel="stylesheet" type="text/css" href="css/EmpowerAbilityLab.css">
+    <link rel="stylesheet" type="text/css" href="css/modal.css">
         
 </head>
 <body>
@@ -12,7 +13,6 @@
 
     <div aria-live="polite" aria-atomic="true" class="sr-announcement" id="sr-announcement"></div>
 
-    <div class="container">
     <header class="split-header"> 
         <div class="light-section">
             <img class="logo" src="images/empowerabilitylabslogo.png" alt="website logo">
@@ -27,15 +27,12 @@
             </nav>
         </div>
     </header>
-    </div>
 
     <main class="container" id="main-content">
         <!-- Home View -->
         <section id="home-view" class="view active">
             <div class="hero">
-                <h1 tabindex="-1">Welcome to Empower Ability Labs!</h1> 
-                
-                
+                <h1 >Welcome to Empower Ability Labs!</h1> 
             </div>
             
             <article class="home-article">
@@ -43,21 +40,28 @@
                 <p>Empower Ability Labs is a hub for learning and empathy-building.  We are on a mission to foster understanding and promote inclusive digital experiences for all.</p>
                 <p>We offer a range of services designed to promote accessibility awareness, drive inclusivity, and enhance the user experience. And help you find answers on How do people with disabilities use technology and navigate the digital world? What tools do they employ? </p>
             </article>
-            <button class="btn" id="community-btn">Meet the Empower Community!</button>
+            <button class="btn" id="community-btn" onclick="openDialog('dialog1', this)">Meet the Empower Community!</button>
             <!-- Community content that toggles -->
-                <div class="community-content" id="community-content" >
-                    <h3>Community Steering Committee</h3>
-                    <p>We get aha! moments from product managers who try our services for the first time. We offered many lab days, workshops and offered usability testing services to many companies and organizations including:</p>
-                    <ul>
-                        <li>McGill University</li>
-                        <li>Walmart.ca</li>
-                        <li>Apple.ca</li>
-                        <li>Google.ca</li>
-                        <li>Government of Canada</li>
-                    </ul>
-                    <p>Our community steering committee brings together industry leaders, academic researchers, and design practitioners to shape the future of user experience design.</p>
+            <div id="dialog_layer" class="dialogs">
+                <div role="dialog" id="dialog1" aria-labelledby="dialog1_label" aria-modal="true" class="hidden">
+                    <h3 id="dialog1_label" class="dialog_label" tabindex="-1">Community Steering Committee</h3>
+                    <div class="dialog_form">
+                        <div class="community-content" id="community-content" >
+                            <h3></h3>
+                            <p>We get aha! moments from product managers who try our services for the first time. We offered many lab days, workshops and offered usability testing services to many companies and organizations including:</p>
+                            <ul>
+                                <li>McGill University</li>
+                                <li>Walmart.ca</li>
+                                <li>Apple.ca</li>
+                                <li>Google.ca</li>
+                                <li>Government of Canada</li>
+                            </ul>
+                            <p>Our community steering committee brings together industry leaders, academic researchers, and design practitioners to shape the future of user experience design.</p>
+                        </div>
+                        <button class="btn" type="button" onclick="closeDialog(this)">Close</button>
+                    </div>
                 </div>
-            
+            </div>
             <div class="home-sections">
                 <div class="home-section">
                     <h3>Our Approach</h3>
@@ -205,8 +209,7 @@
             <p>&copy; Copyright Empower Ability Labs Inc 2023. All rights reserved. </p>
         </div>
     </footer>
-
-    <script src="EmpowerAbilityLab.js">
-    </script>
+    <script src="js/modal.js"></script>
+    <script src="js/EmpowerAbilityLab.js"></script>
 </body>
 </html>
