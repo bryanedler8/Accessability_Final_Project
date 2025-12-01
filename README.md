@@ -52,7 +52,7 @@ The project incorporates:
 
 ---
 
-## Group Members
+## **Group Members**
 1. Ramy Mohamed
 2. Ahmed Boudouh
 3. Bryan Edler
