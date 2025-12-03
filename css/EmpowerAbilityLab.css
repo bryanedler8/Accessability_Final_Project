@@ -132,10 +132,10 @@
         }
 
         /* Add focus styles for headings when they receive focus programmatically */
-h1:focus, h3:focus {
-    outline: 2px solid var(--accent);
-    outline-offset: 4px;
-}
+        h1:focus, h3:focus {
+            outline: 2px solid var(--accent);
+            outline-offset: 4px;
+        }
         
         .view {
             display: none;

@@ -23,18 +23,7 @@
             announcementEl.textContent = message;
         }
 
-        // Toggle community content on button click
-            /* const communityBtn = document.getElementById('community-btn');
-            const communityContent = document.getElementById('community-content');
-            
-            communityBtn.addEventListener('click', function() {
-                if (communityContent.style.display === 'block') {
-                    communityContent.style.display = 'none';
-                } else {
-                    communityContent.style.display = 'block';
-                }
-            }); */
-            
+                 
             // Toggle event details form group based on checkbox selection
             const designCheckbox = document.getElementById('topic-invite');
             const eventDetailsGroup = document.getElementById('event-details-group');
