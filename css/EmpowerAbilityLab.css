@@ -1,56 +1,55 @@
-:root {
-            --primary: #2A4D6E;
-            --primary-light: #3A6DA0;
-            --secondary: #8B4513;
-            --accent: #D4AF37;
-            --light: #F8F9FA;
-            --dark: #212529;
-            --gray: #6C757D;
-            --success: #28A745;
-            --error: #DC3545;
-        }
-        
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-        
-        body {
-            background-color: var(--light);
-            color: var(--dark);
-            line-height: 1.6;
-        }
 
-        /* Make images responsive */
+:root {
+    --primary: #2A4D6E;
+    --primary-light: #3A6DA0;
+    --secondary: #8B4513;
+    --accent: #D4AF37;
+    --light: #F8F9FA;
+    --dark: #212529;
+    --gray: #6C757D;
+    --success: #28A745;
+    --error: #DC3545;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: var(--light);
+    color: var(--dark);
+    line-height: 1.6;
+}
+  /* Make images responsive */
         img {
             max-width: 100%;
             height: auto;
         }
-               
-        .container {
+
+.container {
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 20px;
             position: relative;
             top: 20px;
         }
-        
-        
-        /* Screen reader announcement area */
-        .sr-announcement {
-            position: absolute;
-            left: -10000px;
-            width: 1px;
-            height: 1px;
-            overflow: hidden;
-        }
-        
-        .skip-link:focus {
-            top: 0;
-        }
-        
+
+/* Screen reader announcement area */
+.sr-announcement {
+    position: absolute;
+    left: -10000px;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+}
+
+.skip-link:focus {
+    top: 0;
+}
+
 
         .split-header {
             display: flex;
@@ -132,10 +131,10 @@
         }
 
         /* Add focus styles for headings when they receive focus programmatically */
-        h1:focus, h3:focus {
-            outline: 2px solid var(--accent);
-            outline-offset: 4px;
-        }
+h1:focus, h3:focus {
+    outline: 2px solid var(--accent);
+    outline-offset: 4px;
+}
         
         .view {
             display: none;
@@ -490,74 +489,109 @@
             display: none;
         }
         
-        .success-message {
-            background-color: var(--success);
-            color: white;
-            padding: 1rem;
-            border-radius: 4px;
-            margin-top: 1rem;
-            display: none;
-        }
-        
-        /* Modal Styles */
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.7);
-            z-index: 1000;
-            align-items: center;
-            justify-content: center;
-        }
-        
-        .modal-content {
-            background-color: white;
-            padding: 2rem;
-            border-radius: 10px;
-            max-width: 600px;
-            width: 90%;
-            max-height: 80vh;
-            overflow-y: auto;
-            position: relative;
-        }
-        
-        .modal-close {
-            position: absolute;
-            top: 1rem;
-            right: 1rem;
-            background: none;
-            border: none;
-            font-size: 1.5rem;
-            cursor: pointer;
-            color: var(--gray);
-        }
-        
-        .modal-close:hover, .modal-close:focus {
+
+ /* contaner success message */
+.success-message {
+    display: none;                
+    max-width: 28rem;
+    margin: 2rem auto;
+    padding: 2rem 1.5rem;
+    text-align: center;
+    background-color: #ffffff;
+    border: 1px solid #10ec89;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
+}
+
+/* Circle with check icon */
+.success-icon {
+    width: 64px;
+    height: 64px;
+    margin: 0 auto 1rem;
+    border-radius: 50%;
+    border: 3px solid #28a745;     
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    color: #28a745;
+}
+
+/* title success message */
+.success-title {
+    margin: 0 0 0.5rem;
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: #2e7d32;                
+}
+
+
+.success-text {
+    margin: 0;
+    font-size: 0.95rem;
+    color: #090909;
+    line-height: 1.5;
+}
+
+/* Modal Styles */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 1000;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-content {
+    background-color: white;
+    padding: 2rem;
+    border-radius: 10px;
+    max-width: 600px;
+    width: 90%;
+    max-height: 80vh;
+    overflow-y: auto;
+    position: relative;
+}
+
+.modal-close {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: var(--gray);
+}
+
+.modal-close:hover, .modal-close:focus {
             color: var(--dark);
         }
-        
-        .modal h2 {
-            color: var(--primary);
-            margin-bottom: 1rem;
-        }
-        
-        .modal ul {
-            margin: 1rem 0 1rem 1.5rem;
-        }
-        
-        /* Footer */
-        footer {
-            background-color: var(--dark);
-            color: white;
-            text-align: center;
-            padding: 1.5rem 0;
-            margin-top: 2rem;
-        }
-        
-        /* Responsive Design */
+
+.modal h2 {
+    color: var(--primary);
+    margin-bottom: 1rem;
+}
+
+.modal ul {
+    margin: 1rem 0 1rem 1.5rem;
+}
+
+/* Footer */
+footer {
+    background-color: var(--dark);
+    color: white;
+    text-align: center;
+    padding: 1.5rem 0;
+    margin-top: 2rem;
+}
+
+ /* Responsive Design */
         @media (max-width: 768px) {
 
             /* Header & Nav stack nicely */
@@ -670,3 +704,57 @@
                 transition-duration: 0.01ms !important;
             }
         }
+
+/* styles for the error summary box */
+.error-summary {
+    border: 3px solid #b10e1e;
+    border-left-width: 6px;
+    background-color: #ffffff;
+    color: #111111;
+    padding: 1rem 1.5rem;
+    margin: 1.5rem 0;
+    border-radius: 4px;
+    max-width: 50rem;
+    
+}
+
+.error-summary:focus {
+    outline: 3px solid #000;
+    outline-offset: 2px;
+}
+
+.error-summary legend {
+    font-weight: 700;
+    font-size: 1rem;
+    margin: 0;
+    padding: 0 0 0.25rem 0;
+}
+
+.error-summary-intro {
+    margin: 0 0 0.75rem 0;
+    font-size: 0.95rem;
+}
+
+.error-summary ul {
+    margin: 0;
+    padding-left: 1.25rem;
+    list-style-type: disc;
+}
+
+.error-summary li {
+    margin-bottom: 0.35rem;
+    line-height: 1.4;
+}
+
+.error-summary a {
+    text-decoration: underline;
+    color: #f40b0b;
+}
+.error-summary a:hover,
+.error-summary a:focus,
+.error-summary a:focus-visible {
+    color: #0b5ed7;
+    outline: 2px solid #0b5ed7;
+    outline-offset: 2px;
+}
+/* End of EmpowerAbilityLab.css */
