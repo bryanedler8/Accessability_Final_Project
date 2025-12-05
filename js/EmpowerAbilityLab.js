@@ -25,7 +25,7 @@ function announceToScreenReader(message) {
   announcementEl.textContent = message;
 }
 
-// Toggle community content on button click
+/* // Toggle community content on button click
 const communityBtn = document.getElementById("community-btn");
 const communityContent = document.getElementById("community-content");
 
@@ -35,7 +35,7 @@ communityBtn.addEventListener("click", function () {
   } else {
     communityContent.style.display = "block";
   }
-});
+}); */
 
 const speakerCheckbox = document.getElementById("topic-invite");
 const eventDetails = document.getElementById("event-details-group");
