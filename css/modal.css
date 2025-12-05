@@ -121,6 +121,7 @@
   z-index: 1;
 }
 
+
 @media screen and (min-width: 640px) {
   .dialog-backdrop {
     background: rgb(0 0 0 / 30%);
