@@ -224,7 +224,7 @@
 
       <!-- Schedule View -->
       <section id="schedule-view" class="view">
-        <h2 tabindex="-1">Schedule a Call</h2>
+        <h1 tabindex="-1">Schedule a Call</h1>
 
         <div class="schedule-intro">
           <div>
@@ -233,7 +233,7 @@
               and driving positive change through immersive experiences.
             </p>
             <p>
-              Fill out the form below and we’ll get back to you as soon as we
+              Fill out the form below and we'll get back to you as soon as we
               can to schedule a call with our sales team!
             </p>
           </div>
@@ -241,9 +241,31 @@
             <img src="images/scheduleacall.png" alt="" />
           </div>
         </div>
+        <!-- success message -->
+        <div
+          class="success-message"
+          id="success-message"
+          role="status"
+          aria-live="polite"
+          tabindex="-1"
+        >
+          <div class="success-icon" aria-hidden="true">✔</div>
+          <h2 class="success-title">Form submitted successfully!</h2>
+          <p class="success-text">
+            Thank you! The form has been submitted successfully.<br />
+            We'll be in touch soon to schedule your call.
+          </p>
+        </div>
+        <!-- schedule form -->
+        <form class="schedule-form" id="schedule-form" novalidate>
+          <!-- Error summary fieldset -->
 
-        <form class="schedule-form" id="schedule-form">
+          <fieldset class="error-summary" id="form-errors" tabindex="-1" hidden>
+            <legend>There were problems with your submission</legend>
+            <ul></ul>
+          </fieldset>
           <div class="form-group">
+            <!-- business-name -->
             <label for="business-name" class="required">Business Name</label>
             <input
               type="text"
@@ -255,21 +277,23 @@
               Please enter your business name
             </div>
           </div>
-
+          <!-- phone -->
           <div class="form-group">
             <label for="phone">Phone Number</label>
             <input
               type="tel"
               id="phone"
               name="phone"
-              placeholder="613-123-1234"
-              pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
+              aria-describedby="phone-hint"
             />
+
+            <p id="phone-hint" class="field-hint">Use 10 digits .</p>
             <div class="error" id="phone-error">
-              Please enter a valid phone number (format: 613-123-1234)
+              Please enter a 10-digit phone number.
             </div>
           </div>
 
+          <!-- email -->
           <div class="form-group">
             <label for="email" class="required">Email</label>
             <input type="email" id="email" name="email" required />
@@ -277,7 +301,7 @@
               Please enter a valid email address
             </div>
           </div>
-
+          <!-- topics checkboxes -->
           <div class="form-group">
             <label
               >What would you like to talk about? (Select all that apply)</label
@@ -304,6 +328,12 @@
                 >Invite a speaker with disabilities to your event</label
               >
             </div>
+
+            <div class="form-group conditional-group" id="event-details-group">
+              <label for="event">Tell us about your event</label>
+              <textarea id="event" name="event"></textarea>
+            </div>
+
             <div class="checkbox-group">
               <input
                 type="checkbox"
@@ -318,19 +348,7 @@
             </div>
           </div>
 
-          <div class="form-group conditional-group" id="event-details-group">
-            <label for="event">Tell us about your event</label>
-            <textarea id="event" name="event"></textarea>
-          </div>
-
-          <!-- <div class="switch-container" tabindex="0">
-                    <label class="switch">
-                        <input type="checkbox" id="newsletter" name="newsletter">
-                        <span class="slider"></span>
-                    </label>
-                    <label for="newsletter">Receive emails about updates and services</label>
-                </div> -->
-
+          <!-- newsletter switch -->
           <div class="switch-container">
             <label class="switch-label">
               <input
@@ -341,13 +359,8 @@
               />Receive emails about updates and services
             </label>
           </div>
-
-          <button type="submit" class="btn">Submit</button>
-
-          <div class="success-message" id="success-message">
-            Thank you for your submission! We'll be in touch soon to schedule
-            your call.
-          </div>
+          <!-- submit button -->
+          <button type="submit" class="btn">Schedule a Call</button>
         </form>
       </section>
     </main>
@@ -357,6 +370,7 @@
         &copy; Copyright Empower Ability Labs Inc 2023. All rights reserved.
       </p>
     </footer>
+
     <script src="js/modal.js"></script>
     <script src="js/EmpowerAbilityLab.js"></script>
   </body>

@@ -24,6 +24,48 @@ function announceToScreenReader(message) {
 }
 
 // Toggle community content on button click
+const communityBtn = document.getElementById("community-btn");
+const communityContent = document.getElementById("community-content");
+
+communityBtn.addEventListener("click", function () {
+  if (communityContent.style.display === "block") {
+    communityContent.style.display = "none";
+  } else {
+    communityContent.style.display = "block";
+  }
+});
+
+const speakerCheckbox = document.getElementById("topic-invite");
+const eventDetails = document.getElementById("event-details-group");
+const eventTextarea = document.getElementById("event"); // id du textarea dans le groupe
+
+if (speakerCheckbox && eventDetails) {
+  // Initial state
+  eventDetails.hidden = true;
+  eventDetails.classList.remove("show");
+  speakerCheckbox.setAttribute("aria-expanded", "false");
+  // Event listener for checkbox change
+  speakerCheckbox.addEventListener("change", function () {
+    const isChecked = this.checked;
+
+    this.setAttribute("aria-expanded", isChecked ? "true" : "false");
+    // Show or hide event details based on checkbox state
+    if (isChecked) {
+      eventDetails.hidden = false;
+      eventDetails.classList.add("show");
+
+      // Focus on the textarea when shown
+      if (eventTextarea) {
+        eventTextarea.focus();
+      }
+    } else {
+      eventDetails.hidden = true;
+      eventDetails.classList.remove("show");
+    }
+  });
+}
+
+// Toggle community content on button click
 /* const communityBtn = document.getElementById('community-btn');
             const communityContent = document.getElementById('community-content');
             
@@ -117,45 +159,64 @@ document.addEventListener("DOMContentLoaded", function () {
     updatePageTitle(hash);
   });
 
-  /* modalClose.addEventListener('click', function() {
-                modal.style.display = 'none';
-                document.body.style.overflow = 'auto';
-                modal.setAttribute('aria-hidden', 'true');
-                communityBtn.focus(); // Return focus to the button that opened the modal
-            });
-            
-            // Close modal when clicking outside content
-            modal.addEventListener('click', function(e) {
-                if (e.target === modal) {
-                    modal.style.display = 'none';
-                    document.body.style.overflow = 'auto';
-                    modal.setAttribute('aria-hidden', 'true');
-                    communityBtn.focus();
-                }
-            });
-            
-            // Close modal with Escape key
-            document.addEventListener('keydown', function(e) {
-                if (e.key === 'Escape' && modal.style.display === 'flex') {
-                    modal.style.display = 'none';
-                    document.body.style.overflow = 'auto';
-                    modal.setAttribute('aria-hidden', 'true');
-                    communityBtn.focus();
-                }
-            }); */
-
+  /*    // Modal functionality put it as  comments because modal is missing and this code causes errors and breaks the rest of the JS
+                
+<<<<<<< HEAD:EmpowerAbilityLab.js
+       // Close modal when clicking outside content
+        modal.addEventListener('click', function (e) {
+                    if (e.target === modal) {
+                        modal.style.display = 'none';
+                        document.body.style.overflow = 'auto';
+                        modal.setAttribute('aria-hidden', 'true');
+                        communityBtn.focus();
+                    }
+                });
+                
+                // Close modal with Escape key
+        document.addEventListener('keydown', function (e) {
+                    if (e.key === 'Escape' && modal.style.display === 'flex') {
+                        modal.style.display = 'none';
+                        document.body.style.overflow = 'auto';
+                        modal.setAttribute('aria-hidden', 'true');
+                        communityBtn.focus();
+                    }
+                });
+    */
   // Form validation and submission
   const scheduleForm = document.getElementById("schedule-form");
   const successMessage = document.getElementById("success-message");
+  const errorSummary = document.getElementById("form-errors");
+  const errorSummaryList = errorSummary.querySelector("ul");
+
+  function addErrorToSummary(fieldId, message) {
+    errorSummary.hidden = false;
+
+    const li = document.createElement("li");
+    const link = document.createElement("a");
+    link.href = "#" + fieldId;
+    link.textContent = message;
+
+    link.addEventListener("click", function (e) {
+      e.preventDefault();
+      const field = document.getElementById(fieldId);
+      if (field) {
+        field.focus();
+      }
+    });
+
+    li.appendChild(link);
+    errorSummaryList.appendChild(li);
+  }
 
   scheduleForm.addEventListener("submit", function (e) {
     e.preventDefault();
-
-    // Reset errors and success message
     document.querySelectorAll(".error").forEach((error) => {
       error.style.display = "none";
     });
     successMessage.style.display = "none";
+    // Reset error summary
+    errorSummaryList.innerHTML = "";
+    errorSummary.hidden = true;
 
     let isValid = true;
 
@@ -163,8 +224,8 @@ document.addEventListener("DOMContentLoaded", function () {
     const businessName = document.getElementById("business-name");
     if (!businessName.value.trim()) {
       document.getElementById("business-name-error").style.display = "block";
+      addErrorToSummary("business-name", "Please enter your business name.");
       isValid = false;
-      businessName.focus();
     }
 
     // Validate email
@@ -172,37 +233,70 @@ document.addEventListener("DOMContentLoaded", function () {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!email.value.trim() || !emailRegex.test(email.value)) {
       document.getElementById("email-error").style.display = "block";
+      addErrorToSummary("email", "Please enter a valid email address.");
       isValid = false;
-      if (isValid) email.focus();
     }
 
-    // Validate phone (if provided)
-    const phone = document.getElementById("phone");
-    const phoneRegex = /^[0-9]{3}-[0-9]{3}-[0-9]{4}$/;
-    if (phone.value.trim() && !phoneRegex.test(phone.value)) {
-      document.getElementById("phone-error").style.display = "block";
-      isValid = false;
-      if (isValid) phone.focus();
+    // Validate phone (if provided) – 10 digits, tolerant with separators
+    const phoneInput = document.getElementById("phone");
+    const phoneError = document.getElementById("phone-error");
+
+    if (
+      phoneInput &&
+      phoneInput instanceof HTMLInputElement &&
+      phoneInput.value.trim()
+    ) {
+      // Remove non-digit characters
+      const digits = phoneInput.value.replace(/\D/g, "");
+
+      if (digits.length !== 10) {
+        if (phoneError) {
+          phoneError.style.display = "block";
+        }
+        addErrorToSummary("phone", "Please enter an 10-digit phone number.");
+        isValid = false;
+      }
     }
 
     // Validate at least one topic is selected
     const topics = document.querySelectorAll('input[name="topic"]:checked');
     if (topics.length === 0) {
       document.getElementById("topic-error").style.display = "block";
+      // Use the first checkbox id as the target
+      addErrorToSummary("topic-awareness", "Please select at least one topic.");
       isValid = false;
     }
 
-    if (isValid) {
-      // In a real application, you would send the form data to a server here
-      successMessage.style.display = "block";
-      scheduleForm.reset();
+    if (!isValid) {
+      // Count how many errors we have
+      const errorCount = errorSummaryList.querySelectorAll("li").length;
+      let message;
 
-      // Scroll to success message
-      successMessage.scrollIntoView({ behavior: "smooth" });
+      if (errorCount === 1) {
+        message = "There was 1 problem with your submission.";
+      } else {
+        message = `There were ${errorCount} problems with your submission.`;
+      }
 
-      // Focus on success message for screen readers
-      successMessage.focus();
+      // Announce this explicitly to screen readers
+      announceToScreenReader(message);
+
+      // Then move focus to the first error link (like Lab 7)
+      const firstErrorLink = errorSummary.querySelector("a");
+      if (firstErrorLink) {
+        firstErrorLink.focus();
+      } else {
+        errorSummary.focus();
+      }
+
+      return;
     }
+
+    // If everything is valid
+    successMessage.style.display = "block";
+    scheduleForm.reset();
+    successMessage.scrollIntoView({ behavior: "smooth" });
+    successMessage.focus();
   });
 
   // Set initial view based on URL hash
@@ -219,25 +313,4 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Set initial page title
   updatePageTitle(initialHash);
-});
-
-// skip-link
-
-document.addEventListener("DOMContentLoaded", () => {
-  const skipLink = document.querySelector(".skip-link");
-  const mainContent = document.getElementById("main-content");
-
-  if (skipLink && mainContent) {
-    skipLink.addEventListener("click", function (event) {
-      // If other JS is intercepting anchor clicks, prevent it
-      event.preventDefault();
-
-      mainContent.focus(); // Move keyboard focus
-      mainContent.scrollIntoView({
-        // Make sure it's visible
-        behavior: "smooth",
-        block: "start",
-      });
-    });
-  }
 });
