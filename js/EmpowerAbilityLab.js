@@ -93,16 +93,20 @@ designCheckbox.addEventListener("change", function () {
 
 // SPA Navigation Logic
 document.addEventListener("DOMContentLoaded", function () {
-  // Skip-link fix
   const skipLink = document.querySelector(".skip-link");
   const mainContent = document.getElementById("main-content");
 
   if (skipLink && mainContent) {
-    mainContent.setAttribute("tabindex", "-1");
-
     skipLink.addEventListener("click", function (e) {
-      e.preventDefault(); // do NOT change hash!
-      mainContent.focus();
+      e.preventDefault();
+
+      // Find first heading inside main
+      const firstHeading = mainContent.querySelector("h1, h2, h3");
+      const target = firstHeading || mainContent;
+
+      target.setAttribute("tabindex", "-1");
+      target.focus();
+      target.scrollIntoView({ behavior: "smooth", block: "start" });
     });
   }
 
